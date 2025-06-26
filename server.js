@@ -5,24 +5,24 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Token & Chat ID Telegram dari Environment Variables
+// API Telegram
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 
-// ✅ Data Simulasi Whale Buy (ganti nanti dengan API asli)
+// ✅ Simulasi data whale buy (ganti nanti pakai API tracker kamu)
 const whaleData = {
     time: new Date().toLocaleString(),
     token: "PEPE",
-    ca: "3XoYxZAbcDeFgHiJkLmN...",
+    ca: "3XoYxZAbcDefGHiJKLM...",
     dex: "Raydium",
-    swap: "120 SOL → 500M PEPE",
+    swap: "120 SOL ≈ 500M PEPE",
     liquidity: "$250,000",
     owner: "15%",
     burn: "5%",
     status: "SAFE"
 };
 
-// ✅ Function untuk kirim ke Telegram
+// ✅ Fungsi kirim ke Telegram
 async function sendToTelegram(data) {
     const message = `
 🐳 *WHALE BUY DETECTED* 🐳
@@ -34,7 +34,7 @@ Liquidity: ${data.liquidity}
 Owner: ${data.owner}
 Burn: ${data.burn}
 Status: ${data.status}
-`;
+    `;
 
     const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
 
@@ -50,7 +50,7 @@ Status: ${data.status}
     }
 }
 
-// ✅ Endpoint untuk test manual ke Telegram
+// ✅ URL Testing
 app.get('/test', async (req, res) => {
     try {
         await sendToTelegram(whaleData);
@@ -61,12 +61,12 @@ app.get('/test', async (req, res) => {
     }
 });
 
-// ✅ Endpoint status utama
+// ✅ Status server
 app.get('/', (req, res) => {
     res.send('✅ Whale Swap Tracker is running...');
 });
 
-// ✅ Menjalankan server
+// ✅ Run server
 app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
 });
