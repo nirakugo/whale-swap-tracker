@@ -1,0 +1,14 @@
+
+[
+    {
+        "time": "2025-06-27 10:00:00",
+        "token": "$MOON",
+        "ca": "5c74v6...",
+        "dex": "Raydium",
+        "swap": "150 SOL → 5000000 MOON",
+        "liquidity": "$3500",
+        "owner_hold": 45,
+        "burn": 0.5,
+        "status": "RUG"
+    }
+]
