@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whale Swap Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>🐳 Whale Swap Tracker</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Token</th>
+                <th>CA</th>
+                <th>DEX</th>
+                <th>Swap</th>
+                <th>Liquidity</th>
+                <th>Owner Hold</th>
+                <th>Burn</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody id="data-body"></tbody>
+    </table>
+    <script>
+        fetch('data.json')
+            .then(res => res.json())
+            .then(data => {
+                const body = document.getElementById('data-body');
+                data.reverse().forEach(item => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${item.time}</td>
+                        <td>${item.token}</td>
+                        <td><a href="https://solscan.io/token/${item.ca}" target="_blank">${item.ca.slice(0, 4)}...${item.ca.slice(-4)}</a></td>
+                        <td>${item.dex}</td>
+                        <td>${item.swap}</td>
+                        <td>${item.liquidity}</td>
+                        <td>${item.owner_hold}%</td>
+                        <td>${item.burn}%</td>
+                        <td class="${item.status === 'SAFE' ? 'safe' : 'rug'}">${item.status}</td>
+                    `;
+                    body.appendChild(row);
+                });
+            });
+    </script>
+</body>
+</html>

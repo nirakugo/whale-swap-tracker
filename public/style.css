@@ -1,0 +1,7 @@
+body { font-family: Arial; background: #111; color: #eee; padding: 20px; }
+h1 { color: #0f0; }
+table { width: 100%; border-collapse: collapse; }
+th, td { padding: 8px; border: 1px solid #555; text-align: center; }
+.safe { color: lightgreen; font-weight: bold; }
+.rug { color: red; font-weight: bold; }
+a { color: cyan; text-decoration: none; }
